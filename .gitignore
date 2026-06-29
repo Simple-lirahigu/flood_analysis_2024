@@ -1,0 +1,35 @@
+# 本地缓存与运行产物
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Codex / agent 本地状态，不上传到 GitHub
+.agents/
+.codex/
+
+# 输出结果、数据库快照、全文提取内容和临时文件
+outputs/
+figures/
+reports/
+models/
+
+# 遥感与 GIS 大数据
+data/
+*.tif
+*.tiff
+*.img
+*.vrt
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.geojson
+*.gpkg
+
+# 环境与隐私配置
+.env
+*.sqlite
+*.sqlite3
+*.snapshot
+

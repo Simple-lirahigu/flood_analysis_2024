@@ -1,0 +1,29 @@
+# Workspace Map
+
+- `outputs/`: temporary and derived reading outputs.
+- `outputs/leveraging_ml_flood_susceptibility_text.txt`: text extracted from the local PDF article for method review.
+- `outputs/tif_alignment_report.csv`: TIF factor alignment metadata table for files in `E:\新tif_裁`.
+- `outputs/tif_alignment_report.json`: machine-readable TIF alignment report.
+- `outputs/tif_alignment_report.md`: Chinese summary report for TIF coordinate system, resolution, extent, and alignment.
+- `outputs/gm_emergency_material_demand_text.txt`: extracted text from the emergency-material demand prediction Word document for feasibility/coherence assessment.
+- `docs/related_references_flood_susceptibility.md`: grouped related references for flood susceptibility mapping, Sentinel-1 flood extraction, open spatial datasets, and Jiangxi replication.
+- `docs/cnki_flood_susceptibility_sample_references.md`: CNKI candidate references for flood susceptibility and sample point selection, including notes on which papers need full-text verification.
+- `docs/english_flood_susceptibility_references.md`: English reference candidates for flood susceptibility mapping, flood inventory/sample construction, Sentinel-1/GEE flood extraction, and open spatial datasets.
+- `docs/cnki_honglao_15_journal_candidates.md`: screened list of 15 CNKI journal-article candidates for flood/flood-susceptibility topics.
+- `outputs/cnki_flood_susceptibility_references.ris`: RIS export for the CNKI flood susceptibility/sample-selection candidate references.
+- `outputs/cnki_honglao_15_journal_candidates.ris`: RIS file for one-click Zotero import of the 15 selected CNKI journal candidates.
+- `outputs/zotero_test_item.json`: single-item Zotero Connector test payload for the inverse-frequency-ratio sampling paper.
+- `outputs/zotero_cnki_flood_items_batch.json`: batch Zotero Connector payload for the remaining CNKI candidate references.
+- `scripts/gee_poyang_2024_flood_samples.js`: GEE script for extracting Sentinel-1 flood and non-flood sample points for the 2024-06-23 to 2024-07-06 Poyang Lake / Ganbei flood event.
+- `scripts/gee_extract_2024_flood_nonflood_samples_roi_xiao.js`: standalone GEE script for extracting 2024 flood and non-flood sample points from the smaller `roi_xiao` study area, with conservative non-flood masking and separate CSV exports.
+- `scripts/check_tif_alignment.py`: rasterio-based utility for checking TIF CRS, resolution, extent, transform, and grid alignment.
+- `scripts/extract_tif_values_to_samples.py`: extracts aligned TIF factor values to GEE-exported flood/non-flood sample CSV and outputs a modelling table.
+- `scripts/gee_export_poyang_2024_event_rainfall.js`: GEE script for exporting 2024-06-23 to 2024-07-06 CHIRPS event rainfall factors for Ganbei/Poyang Lake.
+- `scripts/align_rainfall_to_factor_grid.py`: aligns GEE-exported rainfall TIF to the existing disaster-factor raster grid.
+- `scripts/extract_docx_text.py`: utility for extracting plain text from docx files for content review.
+- `scripts/create_new_flood_analysis_project.py`: creates the separate PyCharm project `F:\studyPy\flood_analysis_2024`, using `E:\Anaconda3\envs\flood_analysis`.
+- `scripts/fix_pycharm_run_configs.py`: rewrites the new project's PyCharm run configurations with the correct module name and Conda interpreter.
+- `scripts/apply_roi_xiao_updates.py`: exports the smaller ROI to the new PyCharm project and updates scripts/configs to use it for sampling.
+- `MEMORY.md`: reusable project context and confirmed method notes.
+- `HISTORY_LOG.md`: short project activity log.
+- `WORKSPACE_MAP.md`: local workspace file map.
