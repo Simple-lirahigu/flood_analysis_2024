@@ -111,3 +111,12 @@
 - If GEE shows large candidate pixel counts but actual `sample()` output remains tiny (for example 23 samples), suspect the projection of the first sample band. The script now derives `label` from `s1Drop.multiply(0).add(labelValue).toByte()` instead of a pure constant image, and each `sample()` call explicitly sets `projection: s1Projection`.
 - If `sample(numPixels=...)` still returns only 23 samples despite large candidate masks, the script now avoids `numPixels`: it samples all candidate pixels at the chosen scale, applies `randomColumn('random', seed)`, sorts by `random`, and uses `limit(targetSamples)` for the final flood/non-flood sample counts.
 - The GEE sample script now exports sample points both as CSV and SHP: flood samples, non-flood samples, and merged samples. SHP export generates multiple sidecar files that must be kept together when downloaded.
+
+## 2026-06-29 Sample Factor Extraction
+
+- GEE sample CSVs were found under `C:\Users\www\Documents\洪涝易发性\drive-download-20260629T152901Z-3-001`.
+- Inputs: `ganbei_roi_xiao_20240623_0706_flood_samples.csv` and `ganbei_roi_xiao_20240623_0706_nonflood_samples.csv`, each with 1500 rows.
+- Created merged sample CSV `outputs/ganbei_roi_xiao_20240623_0706_merged_samples.csv` with 3000 rows and balanced classes (`flood=1`: 1500, `flood=0`: 1500).
+- Ran `scripts/extract_tif_values_to_samples.py` against `E:\新tif_裁` and generated `outputs/ganbei_roi_xiao_20240623_0706_samples_with_factors.csv`.
+- Extracted 11 TIF factors: `aspect`, `curvature`, `dtr`, `elevation`, `hand`, `lulc2`, `ndvi`, `slope`, `soil2`, `spi`, and `twi`. No NoData rows were dropped after `--drop-nodata`.
+- Current factor directory did not include a 2024 event `rainfall.tif`; rainfall still needs to be added later if it is used as a conditioning factor.

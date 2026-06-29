@@ -27,3 +27,4 @@
 2026-06-29: Fixed low GEE sample counts caused by constant-label image projection by deriving label bands from `s1Drop` and specifying `projection: s1Projection` in `sample()`.
 2026-06-29: Replaced `sample(numPixels=...)` with full candidate sampling plus `randomColumn().sort().limit()` to avoid GEE returning only 23 samples despite large candidate masks.
 2026-06-29: Added SHP exports for flood, non-flood, and merged sample points in the GEE sampling script while keeping CSV exports.
+2026-06-29: Merged 1500 flood and 1500 non-flood GEE CSV sample points and extracted 11 local TIF conditioning factors into a 3000-row modelling table.

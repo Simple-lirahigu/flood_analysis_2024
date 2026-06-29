@@ -12,6 +12,8 @@ outputs/
 figures/
 reports/
 models/
+drive-download-*/
+drive-download-*.zip
 
 # 遥感与 GIS 大数据
 data/
@@ -32,4 +34,3 @@ data/
 *.sqlite
 *.sqlite3
 *.snapshot
-
