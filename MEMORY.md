@@ -123,3 +123,15 @@
 - After the user added `rainfall.tif`, reran extraction and generated `outputs/ganbei_roi_xiao_20240623_0706_samples_with_factors_rainfall.csv`.
 - The rainfall-inclusive table has 2991 rows after `--drop-nodata`, with class counts `flood=1`: 1496 and `flood=0`: 1495. Extracted factors are `aspect`, `curvature`, `dtr`, `elevation`, `hand`, `lulc2`, `ndvi`, `rainfall`, `slope`, `soil2`, `spi`, and `twi`.
 - `rainfall.tif` has the same raster size, resolution, bounds, and transform as the other factors, but its CRS WKT differs slightly in spheroid parameter precision. `scripts/extract_tif_values_to_samples.py` was revised to require matching grid geometry and warn, rather than fail, on CRS WKT string differences.
+
+## 2026-06-30 Training Table QC and Factor Statistics
+
+- Ran `scripts/qc_factor_statistics.py` on `outputs/ganbei_roi_xiao_20240623_0706_samples_with_factors_rainfall.csv`.
+- Sample table has 2991 rows: `flood=1` has 1496 samples and `flood=0` has 1495 samples.
+- Continuous factors checked: `aspect`, `curvature`, `dtr`, `elevation`, `hand`, `ndvi`, `rainfall`, `slope`, `spi`, and `twi`.
+- Categorical factors identified: `lulc2` and `soil2`; these should not be interpreted as continuous factors.
+- No missing values were found in the 12 factor columns, `flood`, `label`, `longitude`, or `latitude`.
+- Pearson correlation among continuous factors found no high-correlation pairs at `|r| >= 0.7`.
+- VIF results: `rainfall` has moderate multicollinearity risk with `VIF=8.220`; all other continuous factors have VIF below 5.
+- Notable distribution issues: `spi` has a very large maximum and standard deviation, `twi` has a large scale, and `aspect=-1` appears frequently and likely indicates flat/no-aspect cells. These need handling or explanation before non-tree modelling.
+- Generated QC outputs under `outputs/qc` and figures under `figures/qc`. Added summary document `docs/training_table_qc_factor_statistics.md`.
