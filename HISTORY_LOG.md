@@ -28,3 +28,4 @@
 2026-06-29: Replaced `sample(numPixels=...)` with full candidate sampling plus `randomColumn().sort().limit()` to avoid GEE returning only 23 samples despite large candidate masks.
 2026-06-29: Added SHP exports for flood, non-flood, and merged sample points in the GEE sampling script while keeping CSV exports.
 2026-06-29: Merged 1500 flood and 1500 non-flood GEE CSV sample points and extracted 11 local TIF conditioning factors into a 3000-row modelling table.
+2026-06-29: Re-ran sample factor extraction after adding `rainfall.tif`, producing a 2991-row modelling table with 12 conditioning factors.

@@ -107,6 +107,10 @@ def main() -> None:
 
     with rasterio.open(tif_paths[0]) as ref:
         raster_crs = ref.crs
+        ref_width = ref.width
+        ref_height = ref.height
+        ref_transform = ref.transform
+        ref_res = ref.res
 
     if raster_crs is None:
         raise ValueError(f"参考 TIF 缺少坐标系：{tif_paths[0]}")
@@ -122,8 +126,19 @@ def main() -> None:
     for tif_path in tif_paths:
         factor_name = tif_path.stem
         with rasterio.open(tif_path) as src:
+            same_grid = (
+                src.width == ref_width
+                and src.height == ref_height
+                and src.transform == ref_transform
+                and src.res == ref_res
+            )
+            if not same_grid:
+                raise ValueError(f"栅格网格不一致，不能直接按样本点提取：{tif_path.name}")
             if src.crs != raster_crs:
-                raise ValueError(f"坐标系不一致：{tif_path.name}")
+                print(
+                    f"警告：{tif_path.name} 的 CRS WKT 与参考 TIF 不完全一致，"
+                    "但网格、分辨率、范围和 transform 一致，继续提取。"
+                )
             values = [item[0] for item in src.sample(coords)]
             cleaned = [normalize_nodata(value, src.nodata) for value in values]
             df[factor_name] = cleaned

@@ -120,3 +120,6 @@
 - Ran `scripts/extract_tif_values_to_samples.py` against `E:\新tif_裁` and generated `outputs/ganbei_roi_xiao_20240623_0706_samples_with_factors.csv`.
 - Extracted 11 TIF factors: `aspect`, `curvature`, `dtr`, `elevation`, `hand`, `lulc2`, `ndvi`, `slope`, `soil2`, `spi`, and `twi`. No NoData rows were dropped after `--drop-nodata`.
 - Current factor directory did not include a 2024 event `rainfall.tif`; rainfall still needs to be added later if it is used as a conditioning factor.
+- After the user added `rainfall.tif`, reran extraction and generated `outputs/ganbei_roi_xiao_20240623_0706_samples_with_factors_rainfall.csv`.
+- The rainfall-inclusive table has 2991 rows after `--drop-nodata`, with class counts `flood=1`: 1496 and `flood=0`: 1495. Extracted factors are `aspect`, `curvature`, `dtr`, `elevation`, `hand`, `lulc2`, `ndvi`, `rainfall`, `slope`, `soil2`, `spi`, and `twi`.
+- `rainfall.tif` has the same raster size, resolution, bounds, and transform as the other factors, but its CRS WKT differs slightly in spheroid parameter precision. `scripts/extract_tif_values_to_samples.py` was revised to require matching grid geometry and warn, rather than fail, on CRS WKT string differences.
