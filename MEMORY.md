@@ -135,3 +135,16 @@
 - VIF results: `rainfall` has moderate multicollinearity risk with `VIF=8.220`; all other continuous factors have VIF below 5.
 - Notable distribution issues: `spi` has a very large maximum and standard deviation, `twi` has a large scale, and `aspect=-1` appears frequently and likely indicates flat/no-aspect cells. These need handling or explanation before non-tree modelling.
 - Generated QC outputs under `outputs/qc` and figures under `figures/qc`. Added summary document `docs/training_table_qc_factor_statistics.md`.
+
+## 2026-06-30 First-Round Modelling Without SPI
+
+- User requested to proceed without `spi` for now but to keep reminding that SPI must be revisited.
+- Added and ran `scripts/train_first_round_models.py` on `outputs/ganbei_roi_xiao_20240623_0706_samples_with_factors_rainfall.csv`.
+- Excluded factor: `spi`.
+- Used continuous factors: `aspect`, `curvature`, `dtr`, `elevation`, `hand`, `ndvi`, `rainfall`, `slope`, and `twi`.
+- Used categorical factors: `lulc2` and `soil2`, encoded with One-Hot.
+- Models trained: RandomForest, XGBoost, and SVM_RBF. Split: stratified random 70/30 with random seed `20240706`.
+- Test metrics: RandomForest ROC-AUC `0.9533`, Accuracy `0.8898`, F1 `0.8853`, Kappa `0.7795`; XGBoost ROC-AUC `0.9497`, Accuracy `0.8942`, F1 `0.8917`, Kappa `0.7884`; SVM_RBF ROC-AUC `0.9185`, Accuracy `0.8686`, F1 `0.8615`, Kappa `0.7372`.
+- First-round outputs are under `outputs/models_first_round`, figures under `figures/models_first_round`, and models under `models/first_round`.
+- Added summary document `docs/first_round_model_results_without_spi.md`.
+- Important reminder: SPI is not solved; later compare no-SPI, original-SPI, and `log1p(spi)` versions or recompute SPI from DEM hydrology workflow.

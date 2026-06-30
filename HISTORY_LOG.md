@@ -30,3 +30,4 @@
 2026-06-29: Merged 1500 flood and 1500 non-flood GEE CSV sample points and extracted 11 local TIF conditioning factors into a 3000-row modelling table.
 2026-06-29: Re-ran sample factor extraction after adding `rainfall.tif`, producing a 2991-row modelling table with 12 conditioning factors.
 2026-06-30: Completed training-table QC, factor descriptive statistics, Pearson correlation, categorical frequency tables, VIF analysis, and QC figures for the rainfall-inclusive 2024 sample table.
+2026-06-30: Trained first-round RF, XGBoost, and SVM models without SPI, generated metrics, ROC/confusion figures, feature importance outputs, and model artifacts.
